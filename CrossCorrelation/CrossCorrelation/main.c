@@ -179,61 +179,43 @@ int main()
 
 int cross_correlation_asm_full(int* arr_1, int size_1, int* arr_2, int size_2, int* output, int output_size){
     
+    int c = 0;
+    int a = 0;
+    int d=0;
+    int h=0;
     
-    
-//    printf("arr_10: %d ", arr_1[0]);
-//    printf("arr_11: %d ", arr_1[1]);
-//    printf("arr_12: %d ", arr_1[2]);
-//    printf("arr_20: %d ", arr_2[0]);
-//    printf("arr_21: %d ", arr_2[1]);
-//    printf("arr_22: %d ", arr_2[2]);
-    
-    int a=0;
-    int b=0;
-    int n=0;
-    
-    for (n = 0; n < size_1 + size_2 - 1; n++)
-    {
-      int kmin, kmax, k;
-
-      output[n] = 0;
-
-      kmin = (n >= size_2 - 1) ? n - (size_2 - 1) : 0;
-      kmax = (n < size_1 - 1) ? n : size_1 - 1;
-
-        printf("NN: %d", n);
-        printf(" kmin: %d", kmin);
-        printf(" kmax: %d", kmax);
-        b = kmin;
-      for (k = kmax; k >= kmin; k--)
-      {
-          
-        printf("\n/// KK: %d :: BB: %d :: ",k ,b);
-        output[n] += arr_1[k] * arr_2[size_2 - b - 1 ];
-        printf("arr_1: %d * ", arr_1[k]);
-        printf("arr_2: %d ", arr_2[size_2 - b - 1]);
-          b++;
-         // b -- ;                  
-      }
-        
-     printf(" le Out: %d \n", output[n]);
+    for(d=0;d<output_size;d++){
+        output[d]=0;
         
     }
-    
-    printf(" OUT:");
-    
-    for (a=0; a<output_size; a++){
-        printf("-");
-        printf("%d", output[a]);
+   
+    while( a < size_1){
+        h = size_2;
+        c = a;
         
+        while( h > 0){
+            printf("output[c]: %d\n", output[c]);
+            output[c] = output[c] + (arr_1[a] * arr_2[h-1]);
+            printf("c: %d, a: %d, h-1: %d\n", c,a,h-1);
+            printf("output[c: %d]: %d\n",c, output[c]);
+            h--;
+            c++;
+        }
+        a++;
     }
     
-    printf("\n\n");
-    
-    
-    //printf("%d ----- %d----- %d----- %d , CROSS\n", output[0], output[1],output[2],output[3]);
-    
-    return 0;
+    printf("---***---OUTPUT: ");
+    int i;
+    int j=0;
+    for(i=0; i<output_size; i++){
+        printf("%d-", output[i]);
+        if(output[i]!=0){
+            j++;
+        }
+    }
+    printf("\n");
+    printf("%d\n",j);
+    return j;
     
 }
 
