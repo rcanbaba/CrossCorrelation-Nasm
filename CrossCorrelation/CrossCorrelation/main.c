@@ -181,23 +181,21 @@ int cross_correlation_asm_full(int* arr_1, int size_1, int* arr_2, int size_2, i
     
     int c = 0;
     int a = 0;
-    int d=0;
-    int h=0;
+    int d = 0;
+    int h = 0;
     
-    for(d=0;d<output_size;d++){
-        output[d]=0;
-        
+    while( d < output_size ){
+        output[d] = 0;
+        d++;
     }
-   
-    while( a < size_1){
+    while( a < size_1 ){
         h = size_2;
         c = a;
-        
-        while( h > 0){
-            printf("output[c]: %d\n", output[c]);
+        while( h > 0 ){
+           // printf("output[c]: %d\n", output[c]);
             output[c] = output[c] + (arr_1[a] * arr_2[h-1]);
-            printf("c: %d, a: %d, h-1: %d\n", c,a,h-1);
-            printf("output[c: %d]: %d\n",c, output[c]);
+          //  printf("c: %d, a: %d, h-1: %d\n", c,a,h-1);
+          //  printf("output[c: %d]: %d\n",c, output[c]);
             h--;
             c++;
         }
@@ -205,18 +203,19 @@ int cross_correlation_asm_full(int* arr_1, int size_1, int* arr_2, int size_2, i
     }
     
     printf("---***---OUTPUT: ");
-    int i;
-    int j=0;
-    for(i=0; i<output_size; i++){
+    int i = 0;
+    int j = 0;
+    
+    while( i < output_size){
         printf("%d-", output[i]);
-        if(output[i]!=0){
+        if( output[i] != 0){
             j++;
         }
+        i++;
     }
     printf("\n");
-    printf("%d\n",j);
+    //printf("%d\n",j);
     return j;
-    
 }
 
 
