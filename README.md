@@ -7,6 +7,7 @@ NASM on 32-bit Linux
 Full cross correlation on two 1-D arrays.
 Returns number of non-zero elements in the output arrays.
 
+Implemented both C and ASM.
 
 ## Cross Correlation
 
