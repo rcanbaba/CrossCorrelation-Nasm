@@ -16,8 +16,11 @@ Returns number of non-zero elements in the output arrays.
 ## Linking & Compiling
 
   nasm -f elf32 -g cross_correlation_asm_full.asm
+
   gcc -c -g main_asm.c
+
   gcc -g cross_correlation_asm_full.o main_asm.o -o testCrosCorrelation
+
   ./testCrosCorrelation
 
 
